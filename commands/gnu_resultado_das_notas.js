@@ -29,13 +29,13 @@ module.exports = function (bot) {
     if (ap3) {
       resultado = Math.abs(( (ap1 + ap2) * 3 + ap3 * 4 ) / 10).toFixed(1);
 
-      if (resultado > 5) {
+      if (resultado >= 5) {
         message = 'Parabéns @%s você esta aprovado com média %s.';
       } else {
         message = 'Avisei diversas vezes para você estudar @%s, você está reprovado com média %s.';
       }
     } else {
-      resultado = Math.abs((ap1 + ap2) * 3 / 10 - 5).toFixed(1);
+      resultado = (100 / ((ap1 + ap2) * 3)).toFixed(1);
 
       if (resultado)  {
         message = '@%s você precisa tirar %s na AP3 pra passar.';
