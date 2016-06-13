@@ -1,5 +1,5 @@
 module.exports = {
-  token: '161285647:AAHBKQuQyRMlKYJ3uk2oUQHDLD6zAtu2WCI',
+  token: process.env.TELEGRAM_TOKEN,
   options: {
     polling: true
   }
