@@ -2,6 +2,13 @@ var TelegramBot = require('node-telegram-bot-api');
 var express = require('express');
 var config = require('./config');
 var app     = express();
+var request = require("request");
+
+setInterval(function () {
+  request("http://gnu-bot.herokuapp.com/", function(err, res, body) {
+    console.log(body);
+  });
+}, 3 * 60000);
 
 var bot = new TelegramBot(config.token, config.options);
 

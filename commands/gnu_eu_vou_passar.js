@@ -9,9 +9,13 @@ var messages = [
 
 
 module.exports = function (bot) {
-  bot.onText(/\/?gnu_eu_vou_passar/i, function (msg, match) {
+  var euVouPassar = function (msg, match) {
     var message = messages[Math.floor(Math.random() * messages.length)];
     var chatId = msg.chat.id;
     bot.sendMessage(chatId, msg.from.first_name + ', ' + message);
-  });
+  };
+
+  // bot.onText(/\/?(?:gnu_)?eu_vou_passar/i, euVouPassar);
+
+  bot.onText(/eu.*vou.*passar/i, euVouPassar)
 };
