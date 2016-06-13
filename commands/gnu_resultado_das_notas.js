@@ -35,7 +35,8 @@ module.exports = function (bot) {
         message = 'Avisei diversas vezes para você estudar @%s, você está reprovado com média %s.';
       }
     } else {
-      resultado = (100 / ((ap1 + ap2) * 3)).toFixed(1);
+
+      resultado = ((50 - ((ap1 + ap2) * 3)) / 4).toFixed(1);
 
       if (resultado)  {
         message = '@%s você precisa tirar %s na AP3 pra passar.';
