@@ -31,9 +31,9 @@ module.exports = function (bot) {
       resultado = Math.abs(( (ap1 + ap2) * 3 + ap3 * 4 ) / 10).toFixed(1);
 
       if (resultado >= 5) {
-        message = 'Parabéns @%s você esta aprovado com média %s.';
+        message = 'Parabéns %s você esta aprovado com média %s.';
       } else {
-        message = 'Avisei diversas vezes para você estudar @%s, você está reprovado com média %s.';
+        message = 'Avisei diversas vezes para você estudar %s, você está reprovado com média %s.';
       }
     } else {
 
