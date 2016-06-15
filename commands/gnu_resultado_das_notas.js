@@ -25,6 +25,7 @@ module.exports = function (bot) {
     var ap1 = extractNota(msg.text, 1) || 0;
     var ap2 = extractNota(msg.text, 2) || 0;
     var ap3 = extractNota(msg.text, 3);
+    var user = msg.from.username ? ( '@' + msg.from.username ) : msg.from.first_name;
 
     if (ap3) {
       resultado = Math.abs(( (ap1 + ap2) * 3 + ap3 * 4 ) / 10).toFixed(1);
@@ -38,13 +39,17 @@ module.exports = function (bot) {
 
       resultado = ((50 - ((ap1 + ap2) * 3)) / 4).toFixed(1);
 
-      if (resultado)  {
-        message = '@%s você precisa tirar %s na AP3 pra passar.';
+      if (resultado > 0)  {
+        if (resultado > 10) {
+          message = '%s foram muitas as vezes que eu avisei para você estudar e você não me deu ouvidos, quem sabe na próxima vez você não estuda mais...';
+        } else {
+          message = '%s você precisa tirar %s na AP3 pra passar.';
+        }
       } else  {
-        message = 'Parabéns @%s você precisa tirar %s na AP3, hehehehe em outras palavras tão faz se você fizer ou não.';
+        message = 'Parabéns %s você está quase aprovado, mas infelizmente você ainda deve fazer a AP3.';
       }
     }
 
-    bot.sendMessage(msg.chat.id, sprintf(message, msg.from.username, resultado.toString().replace('.', ',')));
+    bot.sendMessage(msg.chat.id, sprintf(message, user, resultado.toString().replace('.', ',')));
   });
 };
