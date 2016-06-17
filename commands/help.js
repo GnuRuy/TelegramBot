@@ -12,7 +12,6 @@ module.exports = function (bot) {
 
       '/gnu_eu_vou_passar - Saiba se você vai passar ou não',
       '/gnu_say_hello - Eu vou de dar olá',
-      '/gnu_say_fuckyou - Eu vou mandar você se fuder',
       '/gnu_tchau - Eu vou te dar tchau',
 
       '/help - Vou tentar te ajudar',
