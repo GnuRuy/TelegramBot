@@ -1,5 +1,4 @@
 'use strict';
-var sprintf = require('sprintf-js').sprintf;
 
 var messages = [
   'nem vou te responder nada...',
@@ -25,5 +24,5 @@ function EuVouPassar(bot) {
     var message = messages[Math.floor(Math.random() * messages.length)];
     var chatId = msg.chat.id;
     bot.sendMessage(chatId, msg.from.first_name + ', ' + message);
-  })
-};
+  });
+}
