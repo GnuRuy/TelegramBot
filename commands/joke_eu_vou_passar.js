@@ -1,3 +1,6 @@
+'use strict';
+var sprintf = require('sprintf-js').sprintf;
+
 var messages = [
   'nem vou te responder nada...',
   'do jeito que você estuda....',
@@ -7,15 +10,20 @@ var messages = [
   'eu que vou saber? Se vira e estuda.',
 ];
 
+module.exports = EuVouPassar;
 
-module.exports = function (bot) {
-  var euVouPassar = function (msg, match) {
+EuVouPassar.help = '';
+
+/**
+ * Retorna uma mensagem randomicamente, respondendo ao usuário
+ * se ele vai passar ou perder.
+ *
+ * @param {Bot} bot Interface do bot
+ */
+function EuVouPassar(bot) {
+  bot.onText(/eu.*vou.*passar/i, (msg) => {
     var message = messages[Math.floor(Math.random() * messages.length)];
     var chatId = msg.chat.id;
     bot.sendMessage(chatId, msg.from.first_name + ', ' + message);
-  };
-
-  // bot.onText(/\/?(?:gnu_)?eu_vou_passar/i, euVouPassar);
-
-  bot.onText(/eu.*vou.*passar/i, euVouPassar)
+  })
 };
