@@ -1,8 +1,6 @@
 'use strict';
 var sprintf = require('sprintf-js').sprintf;
 
-var formula = '(50 - ((AP1 + AP2) * 3)) / 4';
-
 module.exports = BoasVindas;
 
 BoasVindas.help = '';
