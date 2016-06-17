@@ -1,0 +1,10 @@
+{
+  "node": true,
+  "esversion": 6,
+  "browser": false,
+  "mocha": true,
+  "expr": true,
+  "strict": false,
+  "unused": true,
+  "indent": 4
+}
