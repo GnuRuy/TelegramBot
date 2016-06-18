@@ -1,15 +1,24 @@
+'use strict';
 var sprintf = require('sprintf-js').sprintf;
 
-module.exports = function (bot) {
-  // bot.onText(/\/gnu_say_bye/i, function (msg, match) {
-  //   var chatId = msg.chat.id;
-  //   bot.sendMessage(chatId, 'Vá e não volte tão cedo');
-  // });
+var pattern = (nota) => new RegExp('([0-9](?:,|\\.)?[0-9]?)\\s*na\\s*(AP' + nota + ')', 'i');
 
+module.exports = ResultadoDasNotas;
+
+ResultadoDasNotas.help = '';
+
+// [5] na [AP1] e [6] na [AP2]
+ResultadoDasNotas.RE_PATTERN = pattern('[1-3]');
+
+/**
+ * Este comando é utilizado para se despedir de um membro
+ * @param {Bot} bot Interface do bot
+ */
+function ResultadoDasNotas(bot) {
   function extractNota(mensagem, nota) {
     var re = new RegExp('([0-9](?:,|\\.)?[0-9]?)\\s*na\\s*(AP' + nota + ')', 'i');
     mensagem += ''; // Converte para string
-    var results = mensagem.match(re);
+    var results = mensagem.match(pattern(nota));
 
     if (results) {
       var valor = parseFloat(results[1].replace(',', '.'));
@@ -18,8 +27,7 @@ module.exports = function (bot) {
     return undefined;
   }
 
-  // [5] na [AP1] e [6] na [AP2]
-  bot.onText(/([0-9](?:,|\.)?[0-9]?)\s*na\s*(AP[0-9])/i, function (msg, match) {
+  bot.onText(ResultadoDasNotas.RE_PATTERN, (msg) => {
     var message, resultado;
 
     var ap1 = extractNota(msg.text, 1) || 0;
@@ -52,4 +60,4 @@ module.exports = function (bot) {
 
     bot.sendMessage(msg.chat.id, sprintf(message, user, resultado.toString().replace('.', ',')));
   });
-};
+}
