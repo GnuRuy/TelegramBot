@@ -10,10 +10,6 @@ module.exports = function (bot) {
       'Para ver a fórmula da AP3 diga: "Qual é a fórmula da AP3"' + "\n",
       'Para ter minha opinião se você vai passar diga: "Eu vou passar?"' + "\n",
 
-      '/gnu_eu_vou_passar - Saiba se você vai passar ou não',
-      '/gnu_say_hello - Eu vou de dar olá',
-      '/gnu_tchau - Eu vou te dar tchau',
-
       '/help - Vou tentar te ajudar',
     ];
 

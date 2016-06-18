@@ -9,8 +9,5 @@ Despedida.RE_PATTERN = /(say.bye|tchau|xau|bie|bye|at(?:e|é).(?:logo|mais))/i;
  * @param {Bot} bot Interface do bot
  */
 function Despedida(bot) {
-  bot.onText(Despedida.RE_PATTERN, (msg) => {
-    var chatId = msg.chat.id;
-    bot.sendMessage(chatId, 'Vá e não volte tão cedo');
-  });
+  bot.onText(Despedida.RE_PATTERN, (msg) => bot.sendMessage(msg.chat.id, 'Vá e não volte tão cedo'));
 }
