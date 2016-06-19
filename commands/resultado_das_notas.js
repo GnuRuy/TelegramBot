@@ -5,7 +5,15 @@ var pattern = (nota) => new RegExp('([0-9](?:,|\\.)?[0-9]?)\\s*na\\s*(AP' + nota
 
 module.exports = ResultadoDasNotas;
 
-ResultadoDasNotas.help = '';
+ResultadoDasNotas.help = `\
+Para calcular a média diga:
+- "0,0 na AP1 0,0 na AP2 0,0 na AP3"
+- "Tirei 1,3 na AP1 e 5,7 na AP2 e agora eu tirei 2,0 na AP3"
+
+Para saber quanto você precisa na AP3 diga:
+- "0,0 na AP1 0,0 na AP2"
+- "Tirei 1,3 na AP1 e 5,7 na AP2"\
+`;
 
 // [5] na [AP1] e [6] na [AP2]
 ResultadoDasNotas.RE_PATTERN = pattern('[1-3]');

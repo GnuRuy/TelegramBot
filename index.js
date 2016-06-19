@@ -14,9 +14,29 @@ var bot = new TelegramBot(config.token, config.options);
 
 var commands = require('./commands');
 
-commands.forEach(function (command) {
-  command(bot);
-});
+(function () {
+  var help = [];
+
+  commands.forEach(function (command) {
+    command(bot);
+    help.push(command.help);
+  });
+
+  var message_help = help.filter((help) => help != '').join('\n\n');
+
+  bot.onText(/\/?help/i, function (msg, match) {
+    var message = [
+      'Lista de comandos:',
+
+      message_help,
+
+      '/help - Vou tentar te ajudar',
+    ];
+
+    bot.sendMessage(msg.chat.id, message.join('\n\n'));
+  });
+}());
+
 
 bot.getMe().then(function (me) {
   console.log('Olá, menu nome é %s!', me.username);

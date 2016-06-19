@@ -11,7 +11,7 @@ var messages = [
 
 module.exports = EuVouPassar;
 
-EuVouPassar.help = '';
+EuVouPassar.help = 'Para ter minha opinião se você vai passar diga: "Eu vou passar?"';
 
 /**
  * Retorna uma mensagem randomicamente, respondendo ao usuário

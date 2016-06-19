@@ -5,7 +5,7 @@ var formula = '(5 - ((AP1 + AP2) / 2) * 0.6) / 0.4';
 
 module.exports = FormulaDaFinal;
 
-FormulaDaFinal.help = '';
+FormulaDaFinal.help = 'Para ver a fórmula da antiga prova final diga: "Qual é a fórmula da final"';
 FormulaDaFinal.RE_PATTERN = /qual.*(?:é|e)?.*a.*f(?:ó|o)rmula.*da.*final/i;
 
 /**

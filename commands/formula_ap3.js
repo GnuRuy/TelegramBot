@@ -5,7 +5,7 @@ var formula = '(50 - ((AP1 + AP2) * 3)) / 4';
 
 module.exports = FormulaDaAp3;
 
-FormulaDaAp3.help = '';
+FormulaDaAp3.help = 'Para ver a fórmula da AP3 diga: "Qual é a fórmula da AP3"';
 FormulaDaAp3.RE_PATTERN = /qual.*(?:é|e)?.*a.*f(?:ó|o)rmula.*da.*ap3/i;
 
 /**
