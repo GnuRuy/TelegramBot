@@ -1,7 +1,7 @@
 'use strict';
 var sprintf = require('sprintf-js').sprintf;
 
-var pattern = (nota) => new RegExp('(\\-?[0-9](?:,|\\.)?[0-9]?)\\s*na\\s*(AP' + nota + ')', 'i');
+var pattern = (nota) => new RegExp('(\\-?[0-9](?:,|\\.)?[0-9]*?)\\s*na\\s*(AP' + nota + ')', 'i');
 
 module.exports = ResultadoDasNotas;
 

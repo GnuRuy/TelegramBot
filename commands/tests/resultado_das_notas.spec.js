@@ -129,7 +129,7 @@ describe('Fórmula para calcular a final', function () {
         onText: (re, callback) => {
           expect(re).to.deep.equal(command.RE_PATTERN);
           var msg = JSON.parse(JSON.stringify(MSG));
-          msg.text = '5.3 na ap1 e 7.3 na ap2 5 na ap3';
+          msg.text = '5.3 na ap1 e 7.333333333 na ap2 5 na ap3';
           callback(msg, null);
         },
         sendMessage: sinon.spy()
