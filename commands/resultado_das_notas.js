@@ -1,7 +1,7 @@
 'use strict';
 var sprintf = require('sprintf-js').sprintf;
 
-var pattern = (nota) => new RegExp('([0-9](?:,|\\.)?[0-9]?)\\s*na\\s*(AP' + nota + ')', 'i');
+var pattern = (nota) => new RegExp('(\\-?[0-9](?:,|\\.)?[0-9]?)\\s*na\\s*(AP' + nota + ')', 'i');
 
 module.exports = ResultadoDasNotas;
 
@@ -24,7 +24,6 @@ ResultadoDasNotas.RE_PATTERN = pattern('[1-3]');
  */
 function ResultadoDasNotas(bot) {
   function extractNota(mensagem, nota) {
-    var re = new RegExp('([0-9](?:,|\\.)?[0-9]?)\\s*na\\s*(AP' + nota + ')', 'i');
     mensagem += ''; // Converte para string
     var results = mensagem.match(pattern(nota));
 
@@ -36,18 +35,22 @@ function ResultadoDasNotas(bot) {
   }
 
   bot.onText(ResultadoDasNotas.RE_PATTERN, (msg) => {
-    var message, resultado;
+    var message, resultado = 0;
 
     var ap1 = extractNota(msg.text, 1) || 0;
     var ap2 = extractNota(msg.text, 2) || 0;
     var ap3 = extractNota(msg.text, 3);
     var user = msg.from.username ? ( '@' + msg.from.username ) : msg.from.first_name;
 
-    if (ap3) {
+    if (ap1 > 10 || ap2 > 10 || ap3 > 10) {
+      message = '%s onde foi que você já viu uma nota maior que 10? Escreva direito rapaz...';
+    } else if (ap1 < 0 || ap2 < 0 || ap3 < 0) {
+      message = '%s onde foi que você já viu uma nota negativa? Escreva direito rapaz... Tá achando que é Deus agora pra tirar uma nota que nem existe?';
+    } else if (ap3) {
       resultado = Math.abs(( (ap1 + ap2) * 3 + ap3 * 4 ) / 10).toFixed(1);
 
       if (resultado >= 5) {
-        message = 'Parabéns %s você esta aprovado com média %s.';
+        message = 'Parabéns %s você está aprovado com média %s.';
       } else {
         message = 'Avisei diversas vezes para você estudar %s, você está reprovado com média %s.';
       }

@@ -137,7 +137,43 @@ describe('Fórmula para calcular a final', function () {
 
       command(bot);
 
-      var expect_msg = 'Parabéns @' + MSG.from.username + ' você esta aprovado com média 5,8.';
+      var expect_msg = 'Parabéns @' + MSG.from.username + ' você está aprovado com média 5,8.';
+
+      sinon.assert.calledWith(bot.sendMessage, MSG.chat.id, expect_msg);
+    });
+
+    it('Deve retornar uma mensagem perguntando se o usuário acha que o bot é burro para notas maiores que 10', () => {
+      var bot = {
+        onText: (re, callback) => {
+          expect(re).to.deep.equal(command.RE_PATTERN);
+          var msg = JSON.parse(JSON.stringify(MSG));
+          msg.text = '11 na ap1 e 20 na ap2 50 na ap3';
+          callback(msg, null);
+        },
+        sendMessage: sinon.spy()
+      };
+
+      command(bot);
+
+      var expect_msg = '@' + MSG.from.username + ' onde foi que você já viu uma nota maior que 10? Escreva direito rapaz...';
+
+      sinon.assert.calledWith(bot.sendMessage, MSG.chat.id, expect_msg);
+    });
+
+    it('Deve retornar uma mensagem perguntando se o usuário acha que o bot é burro para notas menores que 0', () => {
+      var bot = {
+        onText: (re, callback) => {
+          expect(re).to.deep.equal(command.RE_PATTERN);
+          var msg = JSON.parse(JSON.stringify(MSG));
+          msg.text = '0 na ap1 e -1 na ap2 -50 na ap3';
+          callback(msg, null);
+        },
+        sendMessage: sinon.spy()
+      };
+
+      command(bot);
+
+      var expect_msg = '@' + MSG.from.username + ' onde foi que você já viu uma nota negativa? Escreva direito rapaz... Tá achando que é Deus agora pra tirar uma nota que nem existe?';
 
       sinon.assert.calledWith(bot.sendMessage, MSG.chat.id, expect_msg);
     });
